@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h3>My Courses</h3>    
+  <a href="/enrollments/new" class="btn btn-lg btn-success">Add A Course</a>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Course Number</th>
+        <th>Course Name</th>
+        <th>Professor</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @user.enrollments.each do |enrollment| %>
+      <tr>
+        <td> <%= Course.find(enrollment.course_id).course_num %> </td>
+        <td> <%= Course.find(enrollment.course_id).course_name %> </td>
+        <td> <%= Course.find(enrollment.course_id).professor %> </td>
+        <td>
+          <a href="/courses/<%= enrollment.course_id %>" class="btn btn-primary">See Details</a>
+          <a href="/delete_enrollment/<%= enrollment.id%>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>      
+      </tr>
+      <% end %>
+
+    </table>
+  </div>
+</div>
+

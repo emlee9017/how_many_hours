@@ -1,6 +1,6 @@
 <!-- Validation failure messages -->
-<% if @enrollment.errors.any? %>
-  <% @enrollment.errors.full_messages.each do |message| %>
+<% if @activity.errors.any? %>
+  <% @activity.errors.full_messages.each do |message| %>
     <div class="alert alert-dismissable alert-danger">
       <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
       <%= message %>
@@ -9,33 +9,38 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Add A Course</h3>
+  <h3>Add Activity</h3>
 </div>
 
 <div class="row">
   <div class="col-md-12">
-    <form action="/create_enrollment" method="post">
+    <form action="/create_activity" method="post">
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <!-- Input for user_id -->
-      <input type="hidden" id="user_id" name="user_id" value="<%= current_user.id %>">
 
       <!-- Label and input for course_id -->
       <div class="form-group">
         <label for="course_id" class="control-label">
-          Course Name
+          Course
         </label>
 
-      <%= select_tag(:course_id, options_from_collection_for_select(Course.all, :id, :course_name, @enrollment.course_id), :prompt => "Please select your course", :class => "form-control") %>
+        <input type="text" id="course_id" name="course_id" placeholder="Course" class="form-control" value="<%= @activity.course_id %>">
+      </div>
 
+      <!-- Label and input for activity -->
+      <div class="form-group">
+        <label for="activity" class="control-label">
+          Activity
+        </label>
+
+        <input type="text" id="activity" name="activity" placeholder="Activity" class="form-control" value="<%= @activity.activity %>">
       </div>
 
       <button class="btn btn-success">
-        Add A Course
+        Create Activity
       </button>
       or
-      <a href="/enrollments">Cancel</a>
+      <a href="/activities">Cancel</a>
     </form>
   </div>
 </div>

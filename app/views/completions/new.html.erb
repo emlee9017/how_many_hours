@@ -1,0 +1,83 @@
+<!-- Validation failure messages -->
+<% if @completion.errors.any? %>
+  <% @completion.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Completion</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_completion" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @completion.user_id %>">
+      </div>
+
+      <!-- Label and input for course_id -->
+      <div class="form-group">
+        <label for="course_id" class="control-label">
+          Course
+        </label>
+
+        <input type="text" id="course_id" name="course_id" placeholder="Course" class="form-control" value="<%= @completion.course_id %>">
+      </div>
+
+      <!-- Label and input for activity_id -->
+      <div class="form-group">
+        <label for="activity_id" class="control-label">
+          Activity
+        </label>
+
+        <input type="text" id="activity_id" name="activity_id" placeholder="Activity" class="form-control" value="<%= @completion.activity_id %>">
+      </div>
+
+      <!-- Label and input for duration -->
+      <div class="form-group">
+        <label for="duration" class="control-label">
+          Duration
+        </label>
+
+        <input type="text" id="duration" name="duration" placeholder="Duration" class="form-control" value="<%= @completion.duration %>">
+      </div>
+
+      <!-- Label and input for completion -->
+      <div class="form-group">
+        <label for="completion" class="control-label">
+          Completion
+        </label>
+
+        <%= select_tag(:completion, options_for_select([['Yes', 'Yes'], ['No', 'No']]))%>
+
+      </div>
+
+      <!-- Label and input for notes -->
+      <div class="form-group">
+        <label for="notes" class="control-label">
+          Notes
+        </label>
+
+        <textarea id="notes" name="notes" placeholder="Notes" class="form-control" rows="3"><%= @completion.notes %></textarea>
+      </div>
+
+      <button class="btn btn-success">
+        Create Completion
+      </button>
+      or
+      <a href="/completions">Cancel</a>
+    </form>
+  </div>
+</div>

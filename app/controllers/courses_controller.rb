@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  before_action :authenticate_user!, :only => [:new,:create,:edit,:update,:destroy]
+
   def index
     @courses = Course.all
   end
@@ -15,6 +17,7 @@ class CoursesController < ApplicationController
     @course = Course.new
     @course.course_num = params[:course_num]
     @course.course_name = params[:course_name]
+    @course.professor = params[:professor]
 
     if @course.save
       redirect_to "/courses", :notice => "Course created successfully."
@@ -32,6 +35,7 @@ class CoursesController < ApplicationController
 
     @course.course_num = params[:course_num]
     @course.course_name = params[:course_name]
+    @course.professor = params[:professor]
 
     if @course.save
       redirect_to "/courses", :notice => "Course updated successfully."

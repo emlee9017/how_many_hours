@@ -1,4 +1,6 @@
 class EnrollmentsController < ApplicationController
+  before_action :authenticate_user!, :only => [:new,:create,:edit,:update,:destroy]
+
   def index
     @enrollments = Enrollment.all
   end
@@ -15,13 +17,9 @@ class EnrollmentsController < ApplicationController
     @enrollment = Enrollment.new
     @enrollment.user_id = params[:user_id]
     @enrollment.course_id = params[:course_id]
-    @enrollment.course_num = params[:course_num]
-    @enrollment.course_name = params[:course_name]
-    @enrollment.year = params[:year]
-    @enrollment.quarter = params[:quarter]
 
     if @enrollment.save
-      redirect_to "/enrollments", :notice => "Enrollment created successfully."
+      redirect_to "/users/current_user", :notice => "Enrollment created successfully."
     else
       render 'new'
     end
@@ -36,10 +34,6 @@ class EnrollmentsController < ApplicationController
 
     @enrollment.user_id = params[:user_id]
     @enrollment.course_id = params[:course_id]
-    @enrollment.course_num = params[:course_num]
-    @enrollment.course_name = params[:course_name]
-    @enrollment.year = params[:year]
-    @enrollment.quarter = params[:quarter]
 
     if @enrollment.save
       redirect_to "/enrollments", :notice => "Enrollment updated successfully."

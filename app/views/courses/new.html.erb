@@ -25,10 +25,8 @@
         </label>
 
         <input type="text" id="course_num" name="course_num" placeholder="Course num" class="form-control" value="<%= @course.course_num %>">
-
       </div>
 
-      <a href="/courses/new"> Course Not Found? </a>
       <!-- Label and input for course_name -->
       <div class="form-group">
         <label for="course_name" class="control-label">
@@ -36,6 +34,15 @@
         </label>
 
         <input type="text" id="course_name" name="course_name" placeholder="Course name" class="form-control" value="<%= @course.course_name %>">
+      </div>
+
+      <!-- Label and input for professor -->
+      <div class="form-group">
+        <label for="professor" class="control-label">
+          Professor
+        </label>
+
+        <input type="text" id="professor" name="professor" placeholder="Professor" class="form-control" value="<%= @course.professor %>">
       </div>
 
       <button class="btn btn-success">

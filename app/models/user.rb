@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # has_many :enrollments
-  # has_many :enr_courses, :through => :enrollments, :source => :course       
+  has_many :enrollments
+  has_many :courses, :through => :enrollments
+  has_many :completions
 end

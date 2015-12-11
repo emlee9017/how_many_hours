@@ -1,28 +1,41 @@
 <div class="page-header">
-  <h3>Course #<%= @course.id %></h3>
+  <h3><%= @course.course_name %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12">
     <dl class="dl-horizontal">
-      <dt>Course num</dt>
+      <dt>Course Number</dt>
       <dd><%= @course.course_num %></dd>
 
-      <dt>Course name</dt>
+      <dt>Course Name</dt>
       <dd><%= @course.course_name %></dd>
 
+      <dt>Professor</dt>
+      <dd><%= @course.professor %></dd>
+
+      <% if current_user.present? %>
+      <dt>Assignments</dt>
+      <dd>
+        <% if @course.activities.count == 0 %>
+          No Data Available
+        <% else %>
+          <% @course.activities.each do |activity| %>
+            <p> <a href="/activities/<%=activity.id%>"> <%= activity.activity %> </a> </p>
+          <% end %>
+        <% end %>
+      </dd>
+      <% end %>
+
+      <dt>Avg. Hours Per Week</dt>
+      <dd>
+        <% if @course.completions.count == 0 %>
+          No data Available
+        <% else %>
+          <%= @course.completions.where(:completion => "Yes").map(&:duration).sum/@course.completions.count %>
+        <% end %>
+      </dd>
     </dl>
 
-    <div class="btn-group btn-group-justified">
-      <a href="/courses" class="btn btn-primary">
-        Back
-      </a>
-      <a href="/courses/<%= @course.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_course/<%= @course.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
-    </div>
   </div>
 </div>

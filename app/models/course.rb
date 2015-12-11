@@ -1,3 +1,7 @@
 class Course < ActiveRecord::Base
-  # belongs_to :user
+  has_many :enrollments
+  has_many :users, :through => :enrollments
+
+  has_many :activities
+  has_many :completions
 end

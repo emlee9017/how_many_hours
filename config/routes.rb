@@ -1,20 +1,37 @@
 Rails.application.routes.draw do
 
-  # Routes for the Enrollment resource:
+  # Routes for the Completion resource:
   # CREATE
-  get "/enrollments/new", :controller => "enrollments", :action => "new"
-  post "/create_enrollment", :controller => "enrollments", :action => "create"
+  get "/completions/new", :controller => "completions", :action => "new"
+  post "/create_completion", :controller => "completions", :action => "create"
 
   # READ
-  get "/enrollments", :controller => "enrollments", :action => "index"
-  get "/enrollments/:id", :controller => "enrollments", :action => "show"
+  get "/completions", :controller => "completions", :action => "index"
+  get "/completions/:id", :controller => "completions", :action => "show"
 
   # UPDATE
-  get "/enrollments/:id/edit", :controller => "enrollments", :action => "edit"
-  post "/update_enrollment/:id", :controller => "enrollments", :action => "update"
+  get "/completions/:id/edit", :controller => "completions", :action => "edit"
+  post "/update_completion/:id", :controller => "completions", :action => "update"
 
   # DELETE
-  get "/delete_enrollment/:id", :controller => "enrollments", :action => "destroy"
+  get "/delete_completion/:id", :controller => "completions", :action => "destroy"
+  #------------------------------
+
+  # Routes for the Activity resource:
+  # CREATE
+  get "/activities/new", :controller => "activities", :action => "new"
+  post "/create_activity", :controller => "activities", :action => "create"
+
+  # READ
+  get "/activities", :controller => "activities", :action => "index"
+  get "/activities/:id", :controller => "activities", :action => "show"
+
+  # UPDATE
+  get "/activities/:id/edit", :controller => "activities", :action => "edit"
+  post "/update_activity/:id", :controller => "activities", :action => "update"
+
+  # DELETE
+  get "/delete_activity/:id", :controller => "activities", :action => "destroy"
   #------------------------------
 
   # Routes for the Course resource:
@@ -34,8 +51,33 @@ Rails.application.routes.draw do
   get "/delete_course/:id", :controller => "courses", :action => "destroy"
   #------------------------------
 
-  devise_for :users
-  root "users#index"
+  # Routes for the Enrollment resource:
+  # CREATE
+  get "/enrollments/new", :controller => "enrollments", :action => "new"
+  post "/create_enrollment", :controller => "enrollments", :action => "create"
+
+  # READ
+  get "/enrollments", :controller => "enrollments", :action => "index"
+  get "/enrollments/:id", :controller => "enrollments", :action => "show"
+
+  # UPDATE
+  get "/enrollments/:id/edit", :controller => "enrollments", :action => "edit"
+  post "/update_enrollment/:id", :controller => "enrollments", :action => "update"
+
+  # DELETE
+  get "/delete_enrollment/:id", :controller => "enrollments", :action => "destroy"
+  #------------------------------
+
+  devise_for :users  
+  root "courses#index"
+
+  get "/my_courses", :controller => "photos", :action => "my_likes"
+ 
+  # Routes for the User resource:
+  # READ
+  get "/users", :controller => "users", :action => "index"
+  get "/users/:id", :controller => "users", :action => "show"
+
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

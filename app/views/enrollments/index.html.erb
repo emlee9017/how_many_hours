@@ -11,10 +11,6 @@
       <tr>
         <th>User</th>
         <th>Course</th>
-        <th>Course num</th>
-        <th>Course name</th>
-        <th>Year</th>
-        <th>Quarter</th>
         <th>Actions</th>
       </tr>
 
@@ -22,10 +18,6 @@
       <tr>
         <td><%= enrollment.user_id %></td>
         <td><%= enrollment.course_id %></td>
-        <td><%= enrollment.course_num %></td>
-        <td><%= enrollment.course_name %></td>
-        <td><%= enrollment.year %></td>
-        <td><%= enrollment.quarter %></td>
         <td>
           <a href="/enrollments/<%= enrollment.id %>" class="btn btn-primary">Show</a>
           <a href="/enrollments/<%= enrollment.id %>/edit" class="btn btn-warning">Edit</a>

@@ -11,20 +11,21 @@
       <tr>
         <th>Course num</th>
         <th>Course name</th>
+        <th>Professor</th>
         <th>Actions</th>
       </tr>
 
-      <% @courses.each do |course| %>
+      <% @courses.where.not(:course_name => "Extra Activities").each do |course| %>
       <tr>
         <td><%= course.course_num %></td>
         <td><%= course.course_name %></td>
+        <td><%= course.professor %></td>
         <td>
-          <a href="/courses/<%= course.id %>" class="btn btn-primary">Show</a>
-          <a href="/courses/<%= course.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_course/<%= course.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <a href="/courses/<%= course.id %>" class="btn btn-primary">See Details</a>
         </td>
       </tr>
       <% end %>
     </table>
   </div>
 </div>
+

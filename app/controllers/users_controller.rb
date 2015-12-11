@@ -1,5 +1,11 @@
 class UsersController < ApplicationController
   def index
-  	# @courses=Course.find()
+  	@users = User.all
+  end
+
+  def show
+    @user = User.find(current_user.id)
+    @courses = @user.courses
+    @enrollments = @user.enrollments
   end
 end
