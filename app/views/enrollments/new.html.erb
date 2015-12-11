@@ -1,0 +1,79 @@
+<!-- Validation failure messages -->
+<% if @enrollment.errors.any? %>
+  <% @enrollment.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Enrollment</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_enrollment" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <input type="hidden" id="user_id" name="user_id" value="<%= current_user.id %>">
+
+      <!-- Label and input for course_id -->
+      <div class="form-group">
+        <label for="course_id" class="control-label">
+          Course
+        </label>
+
+        <input type="text" id="course_id" name="course_id" placeholder="Course" class="form-control" value="<%= @enrollment.course_id %>">
+      </div>
+
+      <!-- Label and input for course_num -->
+      <div class="form-group">
+        <label for="course_num" class="control-label">
+          Course num
+        </label>
+
+        <input type="text" id="course_num" name="course_num" placeholder="Course num" class="form-control" value="<%= @enrollment.course_num %>">
+        
+
+
+      </div>
+
+      <!-- Label and input for course_name -->
+      <div class="form-group">
+        <label for="course_name" class="control-label">
+          Course name
+        </label>
+
+        <input type="text" id="course_name" name="course_name" placeholder="Course name" class="form-control" value="<%= @enrollment.course_name %>">
+      </div>
+
+      <!-- Label and input for year -->
+      <div class="form-group">
+        <label for="year" class="control-label">
+          Year
+        </label>
+
+        <input type="text" id="year" name="year" placeholder="Year" class="form-control" value="<%= @enrollment.year %>">
+      </div>
+
+      <!-- Label and input for quarter -->
+      <div class="form-group">
+        <label for="quarter" class="control-label">
+          Quarter
+        </label>
+
+        <%= select_tag(:quarter, options_for_select([['Fall','Fall'],['Winter','Winter'],['Spring','Spring'],['Summer','Summer']])) %>
+      </div>
+
+      <button class="btn btn-success">
+        Create Enrollment
+      </button>
+      or
+      <a href="/enrollments">Cancel</a>
+    </form>
+  </div>
+</div>
