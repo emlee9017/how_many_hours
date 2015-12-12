@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151211191900) do
+ActiveRecord::Schema.define(version: 20151212021408) do
 
   create_table "activities", force: :cascade do |t|
     t.integer  "course_id"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20151211191900) do
 
   create_table "completions", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "course_id"
     t.integer  "activity_id"
     t.float    "duration"
     t.string   "completion"

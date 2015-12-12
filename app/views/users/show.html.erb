@@ -1,6 +1,6 @@
 <div class="page-header">
   <h3>My Courses</h3>    
-  <a href="/enrollments/new" class="btn btn-lg btn-success">Add A Course</a>
+  <a href="/enrollments/new" class="btn btn-lg btn-success">Add Course</a>
 </div>
 
 <div class="row">
@@ -29,3 +29,12 @@
   </div>
 </div>
 
+<h4>Don't forget to do these as well...</h4>    
+<a href="/activities/new_extra" class="btn btn-sm btn-success">Add Activity</a>
+<hr>
+
+<ul>
+  <% @activities.where(:course_id => 9).each do |activity| %>
+    <li> <%= activity.activity %> </li>
+  <% end %>
+</ul>

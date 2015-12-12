@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(current_user.id)
-    @courses = @user.courses
+    @activities = Activity.all
     @enrollments = @user.enrollments
   end
 end

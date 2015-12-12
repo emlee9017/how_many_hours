@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Add Completion</h3>
+  <h3>Add My Hours</h3>
 </div>
 
 <div class="row">
@@ -48,7 +48,7 @@
       <!-- Label and input for completion -->
       <div class="form-group">
         <label for="completion" class="control-label">
-          Completion
+          Completed?
         </label>
 
         <%= select_tag(:completion, options_for_select([['Yes', 'Yes'], ['No', 'No']]))%>
@@ -65,7 +65,7 @@
       </div>
 
       <button class="btn btn-success">
-        Create Completion
+        Add My Hours
       </button>
       or
       <a href="/completions">Cancel</a>

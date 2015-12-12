@@ -17,14 +17,13 @@ class CompletionsController < ApplicationController
   def create
     @completion = Completion.new
     @completion.user_id = params[:user_id]
-    @completion.course_id = params[:course_id]
     @completion.activity_id = params[:activity_id]
     @completion.duration = params[:duration]
     @completion.completion = params[:completion]
     @completion.notes = params[:notes]
 
     if @completion.save
-      redirect_to "/completions", :notice => "Completion created successfully."
+      redirect_to "/users/current_user.id", :notice => "Completion created successfully."
     else
       render 'new'
     end
@@ -56,6 +55,6 @@ class CompletionsController < ApplicationController
 
     @completion.destroy
 
-    redirect_to "/completions", :notice => "Completion deleted."
+    redirect_to "/users/current_user.id", :notice => "Completion deleted."
   end
 end

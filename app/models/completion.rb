@@ -1,7 +1,9 @@
 class Completion < ActiveRecord::Base
-  belongs_to :course
   belongs_to :user
   belongs_to :activity
-end
+
+  # validates :duration, numericality: true
+  # validates :user, :uniqueness => {:scope => :activity_id}
+ end
 
 

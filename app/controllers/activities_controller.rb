@@ -13,6 +13,10 @@ class ActivitiesController < ApplicationController
     @activity = Activity.new
   end
 
+  def new_extra
+    @activity = Activity.new
+  end
+
   def create
     @activity = Activity.new
     @activity.course_id = params[:course_id]

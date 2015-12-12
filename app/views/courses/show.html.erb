@@ -37,9 +37,13 @@
       </dd>
     </dl>
 
-    <% if current_user.present? %>
+    <% if (current_user.present?) and (@course.id != 9) %>
       <a href="/activities/new" class="btn btn-primary">
-        Add An Assignment
+        Add Assignment
+      </a>
+    <% else %>
+      <a href="/activities/new_extra" class="btn btn-primary">
+        Add Activity
       </a>
     <% end %>
   </div>

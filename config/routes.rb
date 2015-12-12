@@ -21,7 +21,9 @@ Rails.application.routes.draw do
   # CREATE
   get "/activities/new", :controller => "activities", :action => "new"
   post "/create_activity", :controller => "activities", :action => "create"
-
+ 
+  get "/activities/new_extra", :controller => "activities", :action => "new_extra"
+ 
   # READ
   get "/activities", :controller => "activities", :action => "index"
   get "/activities/:id", :controller => "activities", :action => "show"
