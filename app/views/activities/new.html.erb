@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="page-header">
-  <h3>Add Activity</h3>
+  <h3>Add Assignment</h3>
 </div>
 
 <div class="row">
@@ -21,26 +21,23 @@
       <!-- Label and input for course_id -->
       <div class="form-group">
         <label for="course_id" class="control-label">
-          Course
+          Course Name
         </label>
-
-        <input type="text" id="course_id" name="course_id" placeholder="Course" class="form-control" value="<%= @activity.course_id %>">
+        <%= select_tag(:course_id, options_from_collection_for_select(User.find(current_user.id).courses, :id, :course_name, @activity.course_id), :prompt => "You can add an activity only for the courses you're taking", :class => "form-control") %>
       </div>
 
       <!-- Label and input for activity -->
       <div class="form-group">
         <label for="activity" class="control-label">
-          Activity
+          Assignment Description
         </label>
 
         <input type="text" id="activity" name="activity" placeholder="Activity" class="form-control" value="<%= @activity.activity %>">
       </div>
 
       <button class="btn btn-success">
-        Create Activity
+        Add Assignment
       </button>
-      or
-      <a href="/activities">Cancel</a>
     </form>
   </div>
 </div>

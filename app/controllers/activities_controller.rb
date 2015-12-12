@@ -1,4 +1,6 @@
 class ActivitiesController < ApplicationController
+  before_action :authenticate_user!, :only => [:new,:create,:edit,:update,:destroy]
+
   def index
     @activities = Activity.all
   end
@@ -17,7 +19,7 @@ class ActivitiesController < ApplicationController
     @activity.activity = params[:activity]
 
     if @activity.save
-      redirect_to "/activities", :notice => "Activity created successfully."
+      redirect_to "/courses", :notice => "Activity created successfully."
     else
       render 'new'
     end

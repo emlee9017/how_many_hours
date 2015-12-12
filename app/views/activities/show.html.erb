@@ -1,27 +1,31 @@
 <div class="page-header">
-  <h3>Activity #<%= @activity.id %></h3>
+  <h3><%= Course.find(@activity.course_id).course_name %> - <%= @activity.activity %></h3>
 </div>
 
 <div class="row">
   <div class="col-md-12">
     <dl class="dl-horizontal">
-      <dt>Course</dt>
-      <dd><%= @activity.course_id %></dd>
+      <dt>How Many Hours? </dt>
+        <% if @activity.completions.count == 0 %>
+            No data Available
+        <% else %>
+        <dd><%= @activity.completions.where(:completion => "Yes").map(&:duration).sum/@activity.completions.count %></dd>
+        <% end %>
 
-      <dt>Activity</dt>
-      <dd><%= @activity.activity %></dd>
-
+      <dt>Notes from Classmates</dt>
+      <dd>        
+        <% @activity.completions.where.not(:notes => "").each do |completion| %>
+        <li> <%= completion.notes %></li>
+        <% end %>
+      </dd>
     </dl>
 
     <div class="btn-group btn-group-justified">
-      <a href="/activities" class="btn btn-primary">
-        Back
+      <a href="/users/<%= current_user.id %>" class="btn btn-primary">
+        Back to My Courses
       </a>
-      <a href="/activities/<%= @activity.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_activity/<%= @activity.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
+      <a href="/completions/new" class="btn btn-warning">
+        Add My Hours
       </a>
     </div>
   </div>

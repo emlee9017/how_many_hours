@@ -4,4 +4,6 @@ class Course < ActiveRecord::Base
 
   has_many :activities
   has_many :completions
+
+  validates :course_num, :course_name, :presence => true
 end

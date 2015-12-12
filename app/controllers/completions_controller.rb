@@ -1,4 +1,6 @@
 class CompletionsController < ApplicationController
+  before_action :authenticate_user!, :only => [:new,:create,:edit,:update,:destroy]
+
   def index
     @completions = Completion.all
   end
@@ -9,6 +11,8 @@ class CompletionsController < ApplicationController
 
   def new
     @completion = Completion.new
+    @user = User.find(current_user.id)
+    @activities = Activity.all
   end
 
   def create

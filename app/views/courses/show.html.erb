@@ -37,5 +37,10 @@
       </dd>
     </dl>
 
+    <% if current_user.present? %>
+      <a href="/activities/new" class="btn btn-primary">
+        Add An Assignment
+      </a>
+    <% end %>
   </div>
 </div>

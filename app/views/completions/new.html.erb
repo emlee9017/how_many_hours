@@ -18,31 +18,25 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for user_id -->
-      <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
-
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @completion.user_id %>">
-      </div>
+      <!-- Input for user_id -->
+      <input type="hidden" id="user_id" name="user_id" value="<%= current_user.id %>">
 
       <!-- Label and input for course_id -->
       <div class="form-group">
         <label for="course_id" class="control-label">
-          Course
+          Course Name
         </label>
 
-        <input type="text" id="course_id" name="course_id" placeholder="Course" class="form-control" value="<%= @completion.course_id %>">
+        <%= select_tag(:course_id, options_from_collection_for_select(@user.courses, :id, :course_name, @completion.course_id), :prompt => "You can add an activity only for the courses you're taking", :class => "form-control") %>
       </div>
 
       <!-- Label and input for activity_id -->
       <div class="form-group">
         <label for="activity_id" class="control-label">
-          Activity
+          Assignment
         </label>
 
-        <input type="text" id="activity_id" name="activity_id" placeholder="Activity" class="form-control" value="<%= @completion.activity_id %>">
+        <%= select_tag(:activity_id, options_from_collection_for_select(@activities, :id, :activity, @completion.activity_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for duration -->
