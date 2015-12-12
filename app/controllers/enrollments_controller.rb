@@ -47,6 +47,6 @@ class EnrollmentsController < ApplicationController
 
     @enrollment.destroy
 
-    redirect_to "/enrollments", :notice => "Enrollment deleted."
+    redirect_to "/users/current_user.id", :notice => "Enrollment deleted."
   end
 end

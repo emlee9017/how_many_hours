@@ -12,7 +12,6 @@ class CompletionsController < ApplicationController
   def new
     @completion = Completion.new
     @user = User.find(current_user.id)
-    @activities = Activity.all
   end
 
   def create

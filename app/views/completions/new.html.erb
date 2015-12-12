@@ -21,22 +21,19 @@
       <!-- Input for user_id -->
       <input type="hidden" id="user_id" name="user_id" value="<%= current_user.id %>">
 
-      <!-- Label and input for course_id -->
-      <div class="form-group">
-        <label for="course_id" class="control-label">
-          Course Name
-        </label>
-
-        <%= select_tag(:course_id, options_from_collection_for_select(@user.courses, :id, :course_name, @completion.course_id), :prompt => "You can add an activity only for the courses you're taking", :class => "form-control") %>
-      </div>
+        <% @activities = [] %>
+        <% @user.courses.each do |course| %>
+          <% course.activities.each do |activity| %>
+          <% @activities.push(activity)  %>
+          <% end %>
+        <% end %>
 
       <!-- Label and input for activity_id -->
       <div class="form-group">
         <label for="activity_id" class="control-label">
           Assignment
         </label>
-
-        <%= select_tag(:activity_id, options_from_collection_for_select(@activities, :id, :activity, @completion.activity_id), :class => "form-control") %>
+      <%= select_tag(:activity_id, options_from_collection_for_select(@activities, :id, :activity_with_coursename, @completion.activity_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for duration -->
